@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reequilibre</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="logo">LOGO</div>
+    <nav aria-label="Main Navigation">
+        <a href="{% url 'questionario' %}">Questionário</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn active" id="trilhaDropdown">Trilha de Conhecimento</a>
+            <div class="knowledge-path-container" id="knowledge-path">
+                <a href="{% url 'pomodoro' %}">Pomodoro</a>
+                <a href="{% url 'tecnicas_tcc' %}">Técnicas de TCC</a>
+            </div>
+        </div>        
+        <a href="{% url 'quem_somos' %}">Quem somos</a>
+        <a href="{% url 'contatos' %}">Contato</a>
+    </nav>
+    <div class="search-container">
+        <div class="search-icon">
+            <img src="{% static 'images/lupa.png' %}" alt="Buscar" />
+        </div>
+        <input type="text" placeholder="Pesquisar..." />
+    </div>
+    <input type="checkbox" id="toggle" class="toggle-checkbox" onclick="toggleDarkMode()" onKeyPress="">
+    <label for="toggle" class="toggle-theme"></label>
+</header>
+
+<div class="container">
+    <div class="effect-phrase">
+        <span>Frase do dia:</span> Cuidar de si mesmo não é um luxo, é uma necessidade. Permita-se pausar, respirar e recomeçar. Sua saúde e bem-estar são a base para tudo!
+    </div>
+
+    <div class="welcome-section">
+        <h1>Olá!</h1>
+        <p>Seja bem-vindo</p>
+        <div class="image-container">
+            <img src="{% static 'caminho/para/imagem.jpg' %}" alt="Imagem da seção de boas-vindas">
+        </div>
+    </div>
+
+    <section class="blue-section">
+        <h2>FORMULÁRIO</h2>
+        <p>Descrição do formulário aqui...</p>
+        <div class="info-box">
+            <img src="{% static 'caminho/para/imagem.jpg' %}" alt="Imagem Formulário" class="form-image">
+        </div>
+    </section>
+
+    <section class="content">
+        <h2>Dados sobre Burnout</h2>
+        <p>Lorem ipsum dolor sit amet...</p>
+        <div class="info-box">15% - Título 1<br>Descrição 1</div>
+        <div class="info-box">15% - Título 2<br>Descrição 2</div>
+        <div class="info-box">15% - Título 3<br>Descrição 3</div>
+        <div class="info-box">15% - Título 4<br>Descrição 4</div>
+    </section>
+</div>
+
+<footer>
+    <div>LOGO</div>
+    <nav>
+        <a href="{% url 'questionario' %}">Questionário</a>
+        <a href="{% url 'trilha_conhecimento' %}">Trilha de conhecimento</a>
+        <a href="{% url 'quem_somos' %}">Quem somos</a>
+        <a href="{% url 'contatos' %}">Contato</a>
+    </nav>
+    <div class="search-container">
+        <div class="search-icon">
+            <img src="{% static 'images/lupa.png' %}" alt="Buscar" />
+        </div>
+        <input type="text" placeholder="Pesquisar..." />
+    </div>
+    <p>&copy; 2024 - Projeto desenvolvido pelo time Safira do voluntariado Pipoca Ágil</p>
+</footer>
+
+<script>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const trilhaDropdown = document.getElementById("trilhaDropdown");
+        const knowledgePathContainer = document.getElementById("knowledge-path");
+        knowledgePathContainer.style.display = "none"; 
+
+        trilhaDropdown.addEventListener("click", function(event) {
+            event.preventDefault(); 
+            const isDisplayed = knowledgePathContainer.style.display === "block";
+            knowledgePathContainer.style.display = isDisplayed ? "none" : "block"; 
+        });
+
+        window.addEventListener("click", function(event) {
+            if (!trilhaDropdown.contains(event.target) && !knowledgePathContainer.contains(event.target)) {
+                knowledgePathContainer.style.display = "none"; 
+            }
+        });
+    });
+    document.querySelector('.dropbtn').addEventListener('click', function() {
+        const dropdown = document.querySelector('.dropdown');
+        dropdown.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
